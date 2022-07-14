@@ -35,6 +35,25 @@ public class UserController {
 		return "userdashboard";
 	}
 	
+	@GetMapping("/customer")
+	public String custDashboard(Model model) {
+		List<User> listuser = service.listAllUser();
+		model.addAttribute("listuser", listuser);
+		return "custdashboard";
+	}
+	@GetMapping("/provider")
+	public String provDashboard(Model model) {
+		List<User> listuser = service.listAllUser();
+		model.addAttribute("listuser", listuser);
+		return "provdashboard";
+	}
+	@GetMapping("/ministerial")
+	public String minisDashboard(Model model) {
+		List<User> listuser = service.listAllUser();
+		model.addAttribute("listuser", listuser);
+		return "minisdashboard";
+	}
+	
 	@RequestMapping(value = "/signup")
 	public String signupUser(Model model) {
 		model.addAttribute("user", new User());
