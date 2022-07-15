@@ -5,7 +5,9 @@
 <title>Customer Dashboard</title>
 </head>
 <body>
-	<h1>Welcome to Customer page</h1>
+	<h1>Welcome to Customer page <span sec:authentication="principal.username"></span></h1>
+	<h1> UserName <span th:text="${user.firstName+' '+user.lastName}"></span></h1>
 	<a href="/logout">logout</a>
+	
 </body>
 </html>

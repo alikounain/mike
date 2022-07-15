@@ -1,5 +1,6 @@
 package com.bbnl.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bbnl.entity.User;
+import com.bbnl.repository.UserRepository;
 import com.bbnl.service.UserService;
 
 @Controller
@@ -19,6 +21,9 @@ public class UserController {
 
 	@Autowired
 	private UserService service;
+	
+	@Autowired
+	private UserRepository repo;
 	
 	@Autowired
 	public BCryptPasswordEncoder passwordEncoder;
@@ -36,9 +41,10 @@ public class UserController {
 	}
 	
 	@GetMapping("/customer")
-	public String custDashboard(Model model) {
-		List<User> listuser = service.listAllUser();
-		model.addAttribute("listuser", listuser);
+	public String custDashboard(Model model, Principal principal) {
+		String username = principal.getName();
+		User user = repo.getUserByUserId(username);
+		model.addAttribute("user", user);
 		return "custdashboard";
 	}
 	@GetMapping("/provider")
