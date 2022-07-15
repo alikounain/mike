@@ -34,9 +34,10 @@ public class UserController {
 	}
 	
 	@GetMapping("/user")
-	public String userDashboard(Model model) {
-		List<User> listuser = service.listAllUser();
-		model.addAttribute("listuser", listuser);
+	public String userDashboard(Model model, Principal principal) {
+		String username = principal.getName();
+		User user = repo.getUserByUserId(username);
+		model.addAttribute("user", user);
 		return "userdashboard";
 	}
 	
@@ -48,15 +49,17 @@ public class UserController {
 		return "custdashboard";
 	}
 	@GetMapping("/provider")
-	public String provDashboard(Model model) {
-		List<User> listuser = service.listAllUser();
-		model.addAttribute("listuser", listuser);
+	public String provDashboard(Model model, Principal principal) {
+		String username = principal.getName();
+		User user = repo.getUserByUserId(username);
+		model.addAttribute("user", user);
 		return "provdashboard";
 	}
 	@GetMapping("/ministerial")
-	public String minisDashboard(Model model) {
-		List<User> listuser = service.listAllUser();
-		model.addAttribute("listuser", listuser);
+	public String minisDashboard(Model model, Principal principal) {
+		String username = principal.getName();
+		User user = repo.getUserByUserId(username);
+		model.addAttribute("user", user);
 		return "minisdashboard";
 	}
 	

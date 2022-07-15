@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+		th:replace="base2::layout(~{::section})" >
 <head>
 <meta charset="UTF-8">
 <title>User Dashboard</title>
 </head>
 <body>
-	<h1>Welcome to User page</h1>
-	<a href="/logout">logout</a>
+	<section>
+		<h1 style="text-align: center; margin-top: 10px">Welcome, <span sec:authentication="principal.username"></span></h1>
+	</section>
 </body>
 </html>
